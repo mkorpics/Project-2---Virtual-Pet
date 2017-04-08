@@ -9,106 +9,161 @@ namespace VirtualPet_Template
 
     class VirtualPet
     {
-        //We're setting our fields to private here so only the VirtualPet class can modify them directly
+        //Set fields to private here so only the VirtualPet class can modify them directly
         private string name;
-        private int hunger;
-        private int thirst;
-        private int energy;
-        private int boredom;
+        private int food;
+        private int water;
+        private int exercise;
+        private int sleep;
+        private int destruction;
 
-        //TODO fill in more fields
-
-        //this defaut constructor sets options without giving us any options
+        //create default constructor with set values
         public VirtualPet()
         {
-            this.name = "Bob";
-            this.hunger = 20;
-            this.thirst = 20;
-            this.energy = 20;
-            this.boredom = 20;
-            //TODO account for more fields
+            this.name = "";
+            this.food = 15;
+            this.water = 0;
+            this.exercise = 5;
+            this.sleep = 0;
+            this.destruction = 10;
         }
 
+        //This constructor requires input for name, but otherwise sets all of the stats (fields) for the pet.
         public VirtualPet(string name)
         {
             this.name = name;
+            this.food = 15;
+            this.water = 0;
+            this.exercise = 5;
+            this.sleep = 0;
+            this.destruction = 10;
         }
 
-        //TODO how can we set things with our construtor
-        public VirtualPet(string name, int hunger, int sick, int boredom)
+        //This constructor allows values to be set individually for all of the stats (fields)
+        public VirtualPet(string name, int food, int water, int exercise, int sleep, int destruction)
         {
             this.name = name;
+            this.food = food;
+            this.water = water;
+            this.exercise = exercise;
+            this.sleep = sleep;
+            this.destruction = destruction;
         }
 
-        //this method can be called to read the current status of hunger
-        public int ReadHunger()
+        //Methods regarding food - giving value, increasing, decreasing
+        //this method can be called to read the current status of food
+        public int ReadFood()
         {
-            return hunger;
+            return food;
         }
 
-        //this method can be called to increase the hunger
-        public void HungerIncrease()
+        //this method can be called to increase the food
+        public void FoodIncrease()
         {
-            //TODO modify these values to anything you see fit
-            this.hunger = hunger + 3;
+            this.food = food + 2;
         }
 
-        //this method can be called to decrease the hunger
-        public void HungerDecrease()
+        //this method can be called to decrease the food
+        public void FoodDecrease()
         {
-            //TODO modify these values to anything you see fit
-            this.hunger = hunger - 5;
+            this.food = food - 3;
         }
 
-        //this method can be called to read the current status of thirst
-        public int ReadThirst()
+
+        //Methods regarding water - giving value, increasing, decreasing
+        //this method can be called to read the current status of water
+        public int ReadWater()
         {
-            return thirst;
+            return water;
         }
 
-        //this method can be called to increase the thirst.
-        public void ThirstIncrease()
+        //this method can be called to increase the water.
+        public void WaterIncrease()
         {
-            this.thirst = thirst + 4;
+            this.water = water + 1;
         }
 
-        //this method can be called to decrease the thirst.
-        public void ThirstDecrease()
+        //this method can be called to decrease the water.
+        public void WaterDecrease()
         {
-            this.thirst = thirst - 6;
+            this.water = water - 4;
         }
 
-        //this method can be called to read the current status of energy
-        public int ReadEnergy()
+        //Methods regarding exercise - giving value, increasing, decreasing
+        //this method can be called to read the current status of exercise
+        public int ReadExercise()
         {
-            return energy;
+            return exercise;
         }
 
-        //this method can be called to increase energy
-        public void EnergyIncrease()
+        //this method can be called to increase exercise
+        public void ExerciseIncrease()
         {
-            this.energy = energy + 8;
+            this.exercise = exercise + 4;
         }
 
-        //this method can be called to decrease energy
-        public void EnergyDecrease()
+        //this method can be called to decrease exercise
+        public void ExerciseDecrease()
         {
-            this.energy = energy - 10;
+            this.exercise = exercise - 3;
         }
 
 
-        //TODO we need to add more methods to modify the other fields
+        //Methods regarding sleep - giving value, increasing, decreasing
+        //this method can be called to get the value of sleep
+        public int ReadSleep()
+        {
+            return sleep;
+        }
 
+        //this method can be called to increase sleep
+        public void SleepIncrease()
+        {
+            this.sleep = sleep + 2;
+        }
+
+        //this method can be called to decrease sleep
+        public void SleepDecrease()
+        {
+            this.sleep = sleep - 5;
+        }
+
+        //Methods regarding destruction - giving value, increasing, decreasing
+        //this method can be called to get the value of destruction
+        public int ReadDesctruction()
+        {
+            return destruction;
+        }
+
+        //this method can be called to increase destruction
+        public void DestructionIncrease()
+        {
+            this.destruction = destruction + 2;
+        }
+
+        //this method can be called to decrease destruction for general situations
+        public void DestructionDecreaseGeneral()
+        {
+            this.destruction = destruction - 1;
+        }
+
+        //this method can be called to decrease for wilderness release
+        public void DestructionDecreaseWilderness()
+        {
+            this.destruction = destruction - 8;
+        }
+           
 
         //method for stats of virtual pet
         public void MyPetStatus()
         {
             Console.WriteLine(name);
-            Console.WriteLine("Hunger: " + hunger);
-            Console.WriteLine("Thirst: " + thirst);
-            Console.WriteLine("Energy: " + energy);
+            Console.WriteLine("Food: \t\t" + food);
+            Console.WriteLine("Water: \t\t" + water);
+            Console.WriteLine("Exercise: \t" + exercise);
+            Console.WriteLine("Sleep: \t\t" + sleep);
+            Console.WriteLine("Destruction: \t" + destruction);
         }
-        //TODO account for more fields
 
         //This method can be called to run the "Pet runs away" scenario
         public void PetRunsAwayScenario()
@@ -135,11 +190,8 @@ namespace VirtualPet_Template
 
         }
 
-            public int[] Tick(int selectedOption, int hunger, int thirst, int energy )
+            public void Tick(int selectedOption)
         {
-
-            int[] updatedPetStats = new int[3];
-
             Random RandomGenerator = new Random();
             int randomNum = RandomGenerator.Next(1, 3);
 
@@ -149,8 +201,7 @@ namespace VirtualPet_Template
                 {
                     case 1:
                         Console.WriteLine("Uh oh! Looks like your pet is refusing to eat. Better luck next time!");
-                        HungerIncrease();
-                        updatedPetStats[0] = hunger;
+                        FoodIncrease();
                         break;
                     case 2:
                         break;
@@ -163,12 +214,10 @@ namespace VirtualPet_Template
                     switch (randomAct)
                     {
                         case 1:
-                            HungerIncrease();
-                            updatedPetStats[0] = hunger;
+                            FoodIncrease();
                             break;
                         case 2:
-                            HungerDecrease();
-                            updatedPetStats[0] = hunger;
+                            FoodDecrease();
                             break;
                     }
 
@@ -177,8 +226,8 @@ namespace VirtualPet_Template
            else //pet will evaluate stats and do the most necessary thing
             {
                 Console.WriteLine("Your pet has decided to take care of its own needs for once!");
-                int[] petStats = { hunger, thirst, energy };
-                int[] dummyStats = { hunger, thirst, energy };
+                int[] petStats = { food, water, exercise };
+                int[] dummyStats = { food, water, exercise };
                 Array.Sort(dummyStats);
 
                 int index = Array.LastIndexOf(petStats, dummyStats[0]);
@@ -186,17 +235,13 @@ namespace VirtualPet_Template
                 switch (index)
                 {
                     case 0:
-                        HungerDecrease();
-                        updatedPetStats[0] = hunger;
+                        FoodDecrease();
                         break;
                 }
-
-                
             }
-
-            return updatedPetStats;
-
         }
+
+
 
 
 
