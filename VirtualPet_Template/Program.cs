@@ -13,15 +13,28 @@ namespace VirtualPet_Template
             //this is how we instantiate a new instance of our pet
             VirtualPet myPet = new VirtualPet(); //using default constructor here
 
+            Console.Write("What would you like to name your pet?");
+            string petName = Console.ReadLine();
+
 
             //TODO add a greeting for the user. you can also let the user name the pet if you like
 
             int selectedOption;
+            int ctr = 0;
 
             do
             {
                 Console.WriteLine();
                 Console.WriteLine();
+
+               
+
+                //initialize alternate user interface for specific scenario
+                //if (ctr == 3)
+                //{
+                //    myPet.MyPetStatus();
+                //    myPet.PetRunsAwayScenario();
+                //}
 
                 myPet.MyPetStatus();
 
@@ -36,50 +49,60 @@ namespace VirtualPet_Template
                 Console.WriteLine("10. Quit");
 
 
-                selectedOption = int.Parse(Console.ReadLine());
+               selectedOption = int.Parse(Console.ReadLine());
 
-                //myPet.MyPetStatus();
+               Random RandomGenerator = new Random();
 
-                switch (selectedOption)
+               if (ctr ==2) //(RandomGenerator.Next(0,5)==2)
                 {
-                    //when the user selects option one we feed the pet
-                    case 1:
+                    myPet.Tick(selectedOption, myPet.ReadHunger(), myPet.ReadThirst(), myPet.ReadEnergy());
+                }
 
-                        myPet.HungerDecrease();
-                        Console.WriteLine("Thank you for feeding the pet");
-                        break;
+               else
+                {
+                    switch (selectedOption)
+                    {
+                        //when the user selects option one we feed the pet
+                        case 1:
 
-                    case 2:
+                            myPet.HungerDecrease();
+                            Console.WriteLine("Thank you for feeding the pet");
+                            break;
 
-                        myPet.ThirstDecrease();
-                        Console.WriteLine("Your pet has been watered!");
-                        break;
+                        case 2:
 
-                    case 3:
+                            myPet.ThirstDecrease();
+                            Console.WriteLine("Your pet has been watered!");
+                            break;
 
-                        myPet.EnergyDecrease();
-                        Console.WriteLine("Your pet has enjoyed a lovely nap!");
-                        break;
+                        case 3:
 
-                    case 4:
+                            myPet.EnergyDecrease();
+                            Console.WriteLine("Your pet has enjoyed a lovely nap!");
+                            break;
 
-                        
-                    //TODO we need to add more cases for the other ways to interact with our pet
+                        case 4:
 
-                    case 10:
 
-                        Console.WriteLine("Thank you for playing.");
-                        break;
+                        //TODO we need to add more cases for the other ways to interact with our pet
 
-                    default:
+                        case 10:
 
-                        Console.WriteLine("Invalid option selected.");
-                        break;
+                            Console.WriteLine("Thank you for playing.");
+                            break;
+
+                        default:
+
+                            Console.WriteLine("Invalid option selected.");
+                            break;
+                    }
                 }
 
                 //TODO We can put method calls here so the pet can have some values change automatically
                 //Feel free to add, remove, or modify which methods are called here
                 myPet.HungerIncrease();
+
+                ctr++; // keep track of how many times the loop has cyled through.
 
             } while (selectedOption != 10);
 
