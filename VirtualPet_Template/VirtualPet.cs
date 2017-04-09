@@ -99,7 +99,7 @@ namespace VirtualPet_Template
         //this method can be called to increase exercise
         public void ExerciseIncrease()
         {
-            this.exercise = exercise + 4;
+            this.exercise = exercise + 5;
         }
 
         //this method can be called to decrease exercise
@@ -199,16 +199,23 @@ namespace VirtualPet_Template
                         Console.WriteLine("In other words, too smart for them to catch, despite an impressive array of attempts.");
                         Console.WriteLine("From all reports, your dragon appears to be thriving on his independent lifestyle.");
                         Console.WriteLine("Luck of the draw, I guess.");
-                        Console.WriteLine("Would you like to adopt a new dragon? Maybe it would go better this time...");
+                        Console.WriteLine("Well, it was lovely playing with you. Please come back again if you would like to try your hand with a new pet!");
 
-                        //set to go back to beginning or exit
+                        Console.WriteLine();
+                        Console.WriteLine("Press any key to continue");
+                        Console.ReadKey();
+                        Environment.Exit(0);
                     }
                     else if (randomNum == 3)
                     {
                         Console.WriteLine("Let it be said only that, well, shots were fired.");
                         Console.WriteLine("It seems as though they believed your dragon posed a threat to society.");
-                        Console.WriteLine("I don't want to be presumptuous, but would you like a new pet?");
-                        //figure out how to reset program from here! Or close out.
+                        Console.WriteLine("It didn't end overly well this time, but if you'd like to try your hand with a second dragon please come again soon!");
+
+                        Console.WriteLine();
+                        Console.WriteLine("Press any key to continue");
+                        Console.ReadKey();
+                        Environment.Exit(0);
                     }
                     else if (randomNum ==4)
                     {
@@ -216,6 +223,7 @@ namespace VirtualPet_Template
                         Console.WriteLine("I really think calling Dragon Patrol was overdoing it.");
                         Console.WriteLine("I mean, he barely got outside the town limits before he decided to nap.");
                         Console.WriteLine("In the middle of a farmer's field. In broad daylight.");
+                        Console.WriteLine("Incredible.");
                     }
                     else
                     {
@@ -230,9 +238,12 @@ namespace VirtualPet_Template
                         WaterIncrease();
                         SleepIncrease();
                         ExerciseDecrease();
+                        ExerciseDecrease();
 
-                        Console.WriteLine("\r\nPress any key to continue");
-                        Console.ReadKey();
+                    Console.WriteLine();
+                    Console.WriteLine("\r\nPress any key to continue");
+                    Console.ReadKey();
+                    Console.WriteLine();
                     break;
                    
                 case 2:
@@ -241,7 +252,7 @@ namespace VirtualPet_Template
                     if (randomNum == 1)
                     {
                         Console.WriteLine("Oh, you're back!");
-                        Console.WriteLine("I was wondering where you've been. I haven't seen you in a week.");
+                        Console.WriteLine("I was wondering what happened to you. I haven't seen you in a week.");
                         Console.WriteLine("You look terrible! Where have you been?");
                         Console.WriteLine("What? Bushwacking?");
                         Console.WriteLine("Lost in the wilderness and chased by wolves?");
@@ -253,7 +264,7 @@ namespace VirtualPet_Template
                     {
                         Console.WriteLine("Good thing you chose to go out and search!");
                         Console.WriteLine("You found your dragon just when it was about to eat Mrs. McGillicutty's horse...with her on it!");
-                        Console.WriteLine("Of course, he just didn't notice her standing next to it, but that wouldn't have changed the outcome much.");
+                        Console.WriteLine("Of course, he just didn't notice her in his excitement (he would never deliberately attack a human) \r\nbut that wouldn't have changed the outcome much.");
                         Console.WriteLine("Can you imagine the lawsuit?");
                     }
                     else
@@ -272,9 +283,11 @@ namespace VirtualPet_Template
                     WaterIncrease();
                     SleepIncrease();
                     ExerciseDecrease();
+                    ExerciseDecrease();
 
-                    Console.WriteLine("\r\nPress any key to continue");
+                    Console.Write("\r\nPress any key to continue");
                     Console.ReadKey();
+                    Console.WriteLine();
                     break;
 
                 case 3:
@@ -282,13 +295,12 @@ namespace VirtualPet_Template
                     Console.WriteLine("Really? You want to give up just like that?");
                     Console.WriteLine("I must say I'm rather surprised.");
                     Console.WriteLine("I guess sometimes it's just not meant to be.");
-                    Console.WriteLine("I suppose I should offer you a chance to try again.");
-                    Console.WriteLine("Would you like to see if you bond more with a new pet?");
-
-                    //give option to quit or get new pet
+                    Console.WriteLine("Unfortunately, I don't have any available dragons at the moment, but come back soon, and I'll see if I have any available!");
+                    Console.WriteLine("See you soon!");
 
                     Console.WriteLine("\r\nPress any key to continue");
                     Console.ReadKey();
+                    Environment.Exit(0);
                     break;
             }
 
@@ -302,9 +314,11 @@ namespace VirtualPet_Template
             Console.WriteLine("When you went to check on your dragon this evening, something was most definitely not right.");
             Console.WriteLine(name + "is clearly not feeling well.");
             Console.WriteLine("What would you like to do?");
+            Console.WriteLine();
 
             Console.WriteLine("\r\n1. Take your dragon to the vet");
             Console.WriteLine("2. Wait it out");
+            Console.WriteLine();
 
             int selectedOption = int.Parse(Console.ReadLine());
 
@@ -323,10 +337,11 @@ namespace VirtualPet_Template
                         Console.WriteLine("I hate to be the bearer of bad news.");
                         Console.WriteLine("It seems your dragon has a particularly deadly strain of Draco Ignis.");
                         Console.WriteLine("I hope you can treasure the memories of your time together.");
-                        Console.WriteLine("Is it too early for me to ask? Well, I'll get to the point.");
-                        Console.WriteLine("Would you like a new dragon?");
+                        Console.WriteLine("Take your time, and when you feel ready, I hope you'll come back and adopt a new dragon friend!");
 
-                        //option to restart
+                        Console.WriteLine("Press any key to continue");
+                        Console.ReadKey();
+                        Environment.Exit(0);
                     }
                     else if (randomNum ==2)
                     {
@@ -354,19 +369,28 @@ namespace VirtualPet_Template
                         ExerciseDecrease();
                         ExerciseDecrease();
                     }
+
+                    Console.WriteLine();
+                    Console.Write("\r\nPress any key to continue");
+                    Console.ReadKey();
+                    Console.WriteLine();
+
                     break;
 
                 //waited it out
                 case 2:
-                    randomNum = RandomGenerator.Next(1,2);
+                    randomNum = RandomGenerator.Next(1,3);
 
                     if (randomNum ==1)
                     {
                         Console.WriteLine("You waited for a few days, but there was no improvement.");
                         Console.WriteLine("You took your dragon to the vet.");
                         Console.WriteLine("Sorry. You waited to long...");
-                        Console.WriteLine("New dragon?");
-                    //Give option to restart program
+                        Console.WriteLine("When you feel ready for a new dragon, please come again!");
+
+                        Console.WriteLine("Press any key to continue");
+                        Console.ReadKey();
+                        Environment.Exit(0);
                     }
                     else
                     {
@@ -380,6 +404,12 @@ namespace VirtualPet_Template
                         ExerciseDecrease();
                         ExerciseDecrease();
                     }
+
+                    Console.WriteLine();
+                    Console.Write("\r\nPress any key to continue");
+                    Console.ReadKey();
+                    Console.WriteLine();
+
                     break;
             }
 
@@ -394,6 +424,7 @@ namespace VirtualPet_Template
             Console.WriteLine("What would you like to do?");
             Console.WriteLine("\r\n1. Take your dragon to the vet");
             Console.WriteLine("2. Wait it out");
+            Console.WriteLine();
 
             int selectedOption = int.Parse(Console.ReadLine());
 
@@ -405,9 +436,9 @@ namespace VirtualPet_Template
                 //took to vet
                 case 1:
 
-                    randomNum = RandomGenerator.Next(1, 2);
+                    randomNum = RandomGenerator.Next(1, 3);
 
-                    if (randomNum == 1)
+                    if (randomNum == 1 || randomNum == 2)
                     {
                         Console.WriteLine("The vet immediately pumped your dragon's stomach. It was a good thing you acted so quickly!");
                         Console.WriteLine("That being said, it took quite a lot of engineering to figure out how to get (and make!) equipment to pump a dragon's stomach.");
@@ -421,15 +452,26 @@ namespace VirtualPet_Template
                         WaterIncrease();
                         ExerciseDecrease();
                         ExerciseDecrease();
+                        FoodIncrease();
+                        FoodIncrease();
                     }
                     else
                     {
                         Console.WriteLine("You do not want to know the details, but suffice it to say, it was too late.");
                         Console.WriteLine("Seriously, though, how much did you feed that thing?");
-                        Console.WriteLine("I'm not sure I should offer after this, but do you want a new dragon?");
+                        Console.WriteLine("I think you need to take some time to reflect on your actions.");
+                        Console.WriteLine("Once you think you are more prepared for the responsibilities of dragon raising, please return!");
 
-                        //option to re-run
+                        Console.WriteLine();
+                        Console.WriteLine("Press any key to continue");
+                        Console.ReadKey();
+                        Environment.Exit(0);
                     }
+
+                    Console.WriteLine();
+                    Console.Write("\r\nPress any key to continue");
+                    Console.ReadKey();
+                    Console.WriteLine();
 
                     break;
 
@@ -449,6 +491,8 @@ namespace VirtualPet_Template
                         WaterIncrease();
                         ExerciseDecrease();
                         ExerciseDecrease();
+                        FoodIncrease();
+                        FoodIncrease();
                     }
                     else
                     {
@@ -464,7 +508,15 @@ namespace VirtualPet_Template
                         WaterIncrease();
                         ExerciseDecrease();
                         ExerciseDecrease();
+                        FoodIncrease();
+                        FoodIncrease();
                     }
+
+                    Console.WriteLine();
+                    Console.Write("\r\nPress any key to continue");
+                    Console.ReadKey();
+                    Console.WriteLine();
+
                     break;
             }
 
@@ -473,36 +525,85 @@ namespace VirtualPet_Template
             public void Tick(int selectedOption)
         {
             Random RandomGenerator = new Random();
-            int randomNum = RandomGenerator.Next(1, 3);
+            int randomNum = RandomGenerator.Next(1, 4);
 
             if (randomNum == 3 ) //pet won't obey
             {
+                //preface text to pet's disobedience
+                Console.WriteLine("One of the travails of being a pet owner:");
+                Console.WriteLine("Uncooperative pets!");
+
                 switch (selectedOption)
                 {
+                    //feed cattle
                     case 1:
-                        Console.WriteLine("");
+
+                        Console.WriteLine(name+ " has decided not to eat.");
                         FoodIncrease();
+
                         break;
+
+                    //lake
                     case 2:
-                        Console.WriteLine();
+
+                        Console.WriteLine(name +" doesn't feel like going down to the lake.");
+
+                        WaterIncrease();
+
                         break;
+
+                    //fly
                     case 3:
-                        Console.WriteLine();
+
+                        Console.WriteLine(name +" would rather take a nap.");
+
+                        ExerciseIncrease();
+                        SleepDecrease();
+
                         break;
+
+                    //play
                     case 4:
-                        Console.WriteLine();
+
+                        Console.WriteLine(name + " is blatantly ignoring you.");
+
+                        ExerciseIncrease();
+
                         break;
+
+                    //wildlands
                     case 5:
-                        Console.WriteLine();
+
+                        Console.WriteLine(name + " doesn't want to go out right now.");
+
+                        DestructionIncrease();
+
                         break;
+                    
+                    //sleep
                     case 6:
-                        Console.WriteLine();
+
+                        Console.WriteLine(name+ " wants to play! Who needs sleep?");
+
+                        SleepIncrease();
+
                         break;
+                    
+                    //barbeque
                     case 7:
-                        Console.WriteLine();
+
+                        Console.WriteLine("Better go apologize to your friends! " + name+ " has disappeared.");
+
+                        FoodIncrease();
+                        ExerciseDecrease();
+
                         break;
+
+                    //Exit program
                     case 10:
-                        Console.WriteLine();
+
+                        Console.WriteLine("What? Already?");
+                        Console.WriteLine("Well, it was a pleasure; we hope you come back soon!");
                         Environment.Exit(0);
                         break;
                 }
@@ -510,39 +611,81 @@ namespace VirtualPet_Template
 
            else if (randomNum == 2) // pet will do something random
                 {
-                    int randomAct = RandomGenerator.Next(1,10);
+                Console.WriteLine();
+
+                int randomAct = RandomGenerator.Next(1,6);
 
                     switch (randomAct)
                     {
+                    //Food - eats
                     case 1:
-                        FoodIncrease();
-                        break;
-                    case 2:
+
+                        Console.WriteLine("I guess your pet felt like having a nice big snack.");
+                        Console.WriteLine("Were those sheep?");
+                        Console.WriteLine("Well, whatever they were, hopefully no one's missing them too much!");
+
                         FoodDecrease();
-                        break;
-                    case 3:
                         WaterIncrease();
+
                         break;
-                    case 4:
+
+                    //Water - drinks
+                    case 2:
+
+                        Console.WriteLine("Your dragon developed a sudden urge to visit the lake");
+                        Console.WriteLine("There was splashing and rolling and wave-making (can you call it that when the tidal-like waves nearly emptied the lake of water?)");
+                        Console.WriteLine("You have decided to look innocent when others discuss the near-empty lake and hope that it rains soon!");
+
                         WaterDecrease();
+                        FoodIncrease();
+
                         break;
-                    case 5:
-                        ExerciseIncrease();
-                        break;
-                    case 6:
+
+                    //Exercise - performs activity
+                    case 3:
+
+                        Console.WriteLine(name + " had a sudden urge to set out for a little stroll.");
+                        Console.WriteLine("One thing led to another");
+                        Console.WriteLine("You decided to worry when you saw Dragon Patrol go soaring past.");
+                        Console.WriteLine("In the end, though, " + name + " returned, and you decided not to ask too many questions...");
+
                         ExerciseDecrease();
-                        break;
-                    case 7:
+                        ExerciseDecrease();
+                        WaterIncrease();
+                        FoodIncrease();
                         SleepIncrease();
+
                         break;
-                    case 8:
+
+                    //Sleep - sleeps
+                    case 4:
+
+                        Console.WriteLine("Looks like " +name+" decided it's nap time!");
+
                         SleepDecrease();
-                        break;
-                    case 9:
+                        FoodIncrease();
+                        WaterIncrease();
+                        ExerciseIncrease();
                         DestructionIncrease();
+
                         break;
-                    case 10:
-                        DestructionDecreaseGeneral();
+
+                    //Destruction - rampages
+                    case 5:
+                    case 6:
+
+                        Console.WriteLine("One of the downsides of dragons: destructive urges.");
+                        Console.WriteLine("There was some fire. A bit of trampling.");
+                        Console.WriteLine("Some ripping and rending.");
+                        Console.WriteLine("You aren't sure whether or not to be glad that most of it occurred on your own property...");
+                        Console.WriteLine("Thank goodness for dragon insurance!");
+                        Console.WriteLine("Even if the premiums are about to soar.");
+
+                        ExerciseDecrease();
+                        DestructionDecreaseWilderness();
+                        FoodIncrease();
+                        WaterIncrease();
+
                         break;
                     }
 
@@ -550,17 +693,75 @@ namespace VirtualPet_Template
 
            else //pet will evaluate stats and do the most necessary thing
             {
-                Console.WriteLine("Your pet has decided to take care of its own needs for once!");
-                int[] petStats = { food, water, exercise };
-                int[] dummyStats = { food, water, exercise };
+                Console.WriteLine("Your pet has decided to take care of its own needs.");
+                int[] petStats = { food, water, exercise, sleep, destruction };
+                int[] dummyStats = { food, water, exercise, sleep, destruction };
                 Array.Sort(dummyStats);
 
-                int index = Array.LastIndexOf(petStats, dummyStats[0]);
+                int index = Array.IndexOf(petStats, dummyStats[4]);
 
                 switch (index)
                 {
+                    //Food highest
                     case 0:
+
+                        Console.WriteLine("It has decided to find some fish to feast on. Better hope it catches its own instead of bothering the fishermen!");
+
                         FoodDecrease();
+                        WaterIncrease();
+                        ExerciseIncrease();
+                        SleepIncrease();
+
+                        break;
+
+                    //Water highest
+                    case 1:
+
+                        Console.WriteLine("If you need to find " + name + " head on down to the lake.");
+
+                        WaterDecrease();
+                        DestructionIncrease();
+
+                        break;
+
+                    //Exercise highest
+                    case 2:
+
+                        Console.WriteLine(name+" is off on a dragon adventure.");
+                        Console.WriteLine("In other words, " + name + " is off flying around, scaring sheep, trying to play with other dragons and generally creating good-natured mayhem.");
+
+                        ExerciseDecrease();
+                        DestructionDecreaseGeneral();
+                        FoodIncrease();
+                        SleepIncrease();
+                        WaterIncrease();
+
+                        break;
+
+                    //Sleep highest
+                    case 3:
+
+                        Console.WriteLine("Looks like "+name+" is out cold. Better come back in a few hours. That nap looks like it's gonna be a long one!");
+
+                        SleepDecrease();
+                        FoodIncrease();
+                        WaterIncrease();
+                        ExerciseIncrease();
+
+                        break;
+
+                    //Destruction highest
+                    case 4:
+
+                        Console.WriteLine("You, love, have the best dragon that ever was.");
+                        Console.WriteLine("Not many dragons would be so considerate as to find such a remote place to vent fire and chaose upon the land.");
+
+                        ExerciseDecrease();
+                        DestructionDecreaseWilderness();
+                        FoodIncrease();
+                        WaterIncrease();
+                        SleepIncrease();
+
                         break;
                 }
             }
