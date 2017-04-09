@@ -27,13 +27,16 @@ namespace VirtualPet_Template
 
             do
             {
-  
+
                 //list the alternate scenarios the user will encounter based on the number of times they have cycled through the loop
-                //if (ctr == 3)
-                //{
-                //    myPet.MyPetStatus();
-                //    myPet.PetRunsAwayScenario();
-                //}
+                if (ctr == 3)
+                {
+                    Console.ReadKey();
+                    Console.Clear();
+                    myPet.PetRunsAwayScenario();
+                }
+
+                Console.WriteLine();
 
                 //display updated pet status above the menu
                 myPet.MyPetStatus();
@@ -52,9 +55,6 @@ namespace VirtualPet_Template
 
 
                selectedOption = int.Parse(Console.ReadLine());
-
-                //create space between menu and response to user
-                Console.WriteLine();
 
                //create a random number generator that will randomly call Tick()
                //Random RandomGenerator = new Random();
@@ -193,10 +193,9 @@ namespace VirtualPet_Template
                 //TODO We can put method calls here so the pet can have some values change automatically
                 //myPet.HungerIncrease();
 
-                //ctr++; // keep track of how many times the loop has cyled through.
+                ctr++; // keep track of how many times the loop has cyled through.
 
                 //create space between each iteration for readability
-                Console.WriteLine();
                 Console.WriteLine();
 
             } while (selectedOption != 10);
