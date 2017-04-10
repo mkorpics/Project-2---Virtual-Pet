@@ -153,7 +153,6 @@ namespace VirtualPet_Template
             this.destruction = destruction - 8;
         }
            
-
         //method for stats of virtual pet
         public void MyPetStatus()
         {
@@ -215,11 +214,11 @@ namespace VirtualPet_Template
                 //user selected yes
                 case 1:
 
-                    randomNum = RandomGenerator.Next(1, 2);
+                    randomNum = RandomGenerator.Next(1, 3);
 
                     if (randomNum==1)
                     {
-                        Console.WriteLine("The two dragons get along... too well, as a matter of face.");
+                        Console.WriteLine("The two dragons get along... too well, as a matter of fact.");
                         Console.WriteLine("They might be having fun, but keeping up with them makes you look like the walking dead!");
 
                         destruction = 3;
@@ -247,7 +246,7 @@ namespace VirtualPet_Template
                 //user selected no
                 case 2:
 
-                    randomNum = RandomGenerator.Next(1, 2);
+                    randomNum = RandomGenerator.Next(1, 3);
 
                     //values don't change for these, because the dragon doesn't do anything
                     if(randomNum==1)
@@ -301,6 +300,9 @@ namespace VirtualPet_Template
             //create random number generator
             Random RandomGenerator = new Random();
             int randomNum;
+
+            //create space between menu and outcome
+            Console.WriteLine();
 
             //filter user choice to correct outcome
             switch (selectedOption)
@@ -474,6 +476,9 @@ namespace VirtualPet_Template
             Random RandomGenerator = new Random();
             int randomNum;
 
+            //create space between menu and outcome
+            Console.WriteLine();
+
             //filter user choice to correct outcome
             switch (selectedOption)
             {
@@ -595,6 +600,9 @@ namespace VirtualPet_Template
             //create random number generator
             Random RandomGenerator = new Random();
             int randomNum;
+
+            //create space between menu and outcome
+            Console.WriteLine();
 
             //filter user choice to correct output
             switch (selectedOption)
@@ -721,6 +729,9 @@ namespace VirtualPet_Template
             //create random number generator
             Random RandomGenerator = new Random();
             int randomNum;
+
+            //create space between menu and outcome
+            Console.WriteLine();
 
             //filter user choice to proper outcome
             switch (selectedOption)

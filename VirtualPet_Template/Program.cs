@@ -251,7 +251,6 @@ namespace VirtualPet_Template
 
                             //other values increase
                             myPet.DestructionIncrease();
-                            myPet.ExerciseIncrease();
 
                             //response to user action
                             Console.WriteLine("Your dragon has thoroughly enjoyed your excursion and has replentlished its store of water");
@@ -260,6 +259,7 @@ namespace VirtualPet_Template
                         //user selects 3 = fly pet
                         case 3:
 
+                            myPet.ExerciseDecrease();
                             myPet.ExerciseDecrease();
 
                             //other values decrease
@@ -293,6 +293,7 @@ namespace VirtualPet_Template
                         case 5:
 
                             myPet.DestructionDecreaseWilderness();
+                            myPet.ExerciseDecrease();
                             myPet.ExerciseDecrease();
                             myPet.ExerciseDecrease();
 
