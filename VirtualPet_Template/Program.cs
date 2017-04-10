@@ -204,7 +204,6 @@ namespace VirtualPet_Template
                 //Send user to Tick() if their input is invalid
                 if (!int.TryParse(userOption, out selectedOption))
                 {
-                    Console.WriteLine("Invalid entry!");
 
                     myPet.Tick(1);
 
