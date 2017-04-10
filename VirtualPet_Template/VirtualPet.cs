@@ -20,7 +20,7 @@ namespace VirtualPet_Template
         //create default constructor with set values
         public VirtualPet()
         {
-            this.name = "";
+            this.name = "Morgan";
             this.food = 15;
             this.water = 0;
             this.exercise = 5;
@@ -33,9 +33,9 @@ namespace VirtualPet_Template
         {
             this.name = name;
             this.food = 15;
-            this.water = 0;
+            this.water = 3;
             this.exercise = 5;
-            this.sleep = 0;
+            this.sleep = 5;
             this.destruction = 10;
         }
 
@@ -166,6 +166,111 @@ namespace VirtualPet_Template
             Console.WriteLine("Destruction: \t" + destruction);
         }
 
+        //This method can be called print centered text strings
+        public void PrintCenter (string text)
+        {
+            Console.SetCursorPosition((Console.WindowWidth - text.Length) / 2, Console.CursorTop);
+            Console.WriteLine(text);
+        }
+
+        //This method can be called to run the scenari where the neighbor asks user to watch her dragon
+        public void WatchNeighborDragon()
+        {
+            //set up scenario
+            Console.WriteLine("This afternoon your neighbor called you.");
+            Console.WriteLine("She's going out of town for a few days, and she wants to know if you will watch her dragon for her.");
+            Console.WriteLine("What are you going to tell her?");
+
+            //user menu options
+            Console.WriteLine("\r\n\r\n1. Yes");
+            Console.WriteLine("2. No");
+
+            string userOption = Console.ReadLine();
+            int selectedOption;
+
+            //create space
+            Console.WriteLine();
+            Console.WriteLine();
+
+            if(!int.TryParse(userOption, out selectedOption))
+            {
+                Console.WriteLine("Invalid input. You have automatically selected \"yes\".");
+                selectedOption = 1;
+            }
+            else
+            {
+                int.TryParse(userOption, out selectedOption);
+            }
+
+            //Random number generator
+            Random RandomGenerator = new Random();
+            int randomNum;
+
+            switch(selectedOption)
+            {
+                //user selected yes
+                case 1:
+
+                    randomNum = RandomGenerator.Next(1, 2);
+
+                    if (randomNum==1)
+                    {
+                        Console.WriteLine("The two dragons get along... too well, as a matter of face.");
+                        Console.WriteLine("They might be having fun, but keeping up with them makes you look like the walking dead!");
+
+                        destruction = 3;
+                        exercise = 2;
+                        FoodIncrease();
+                        WaterIncrease();
+                        SleepIncrease();
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("I can't say that they were the best of friends...");
+                        Console.WriteLine("The fire department says the insurance company might be able to help out,");
+                        Console.WriteLine("but considering the extent of the damage - to your community reputation if nothing else - it might be time to consider relocating. Perhaps to Timbuktu.");
+
+                        destruction = 2;
+                        exercise = 2;
+                        FoodIncrease();
+                        WaterIncrease();
+                        SleepIncrease();
+                    }
+
+                    break;
+            
+                //user selected no
+                case 2:
+
+                    randomNum = RandomGenerator.Next(1, 2);
+
+                    //values don't change for these, because the dragon doesn't do anything
+                    if(randomNum==1)
+                    {
+                        Console.WriteLine("You feel a bit guilty for refusing, at least at first.");
+                        Console.WriteLine("After watching what happened to the person who ended up taking the job, that feeling entirely vanished.");
+                        Console.WriteLine("Your guilt began to dissipate after watching the Dragon Patrol rush by a few times.");
+                        Console.WriteLine("A week of watching them entirely erased any lingering sense of neighborly obligation.");
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("Looks like she found someone else.");
+                        Console.WriteLine("Unfortunately for you, that someone else wasn't quite up to the task...");
+                        Console.WriteLine("The destruction wreaked by your neighbor's out of control dragon was, well, remarkable.");
+                        Console.WriteLine("In the end, though, you may have lost everything else,");
+                        Console.WriteLine("but at least you still have your dragon!");
+                    }
+                    break;
+
+                    default:
+                    Console.WriteLine("Invalid info");
+                    break;
+
+            }
+        }
+        
         //This method can be called to run the "Pet runs away" scenario
         public void PetRunsAwayScenario()
         {
@@ -239,6 +344,7 @@ namespace VirtualPet_Template
                         SleepIncrease();
                         ExerciseDecrease();
                         ExerciseDecrease();
+                    DestructionDecreaseGeneral();
 
                     Console.WriteLine();
                     Console.WriteLine("\r\nPress any key to continue");
@@ -284,6 +390,7 @@ namespace VirtualPet_Template
                     SleepIncrease();
                     ExerciseDecrease();
                     ExerciseDecrease();
+                    DestructionDecreaseGeneral();
 
                     Console.Write("\r\nPress any key to continue");
                     Console.ReadKey();
@@ -452,8 +559,7 @@ namespace VirtualPet_Template
                         WaterIncrease();
                         ExerciseDecrease();
                         ExerciseDecrease();
-                        FoodIncrease();
-                        FoodIncrease();
+                        food = 10;
                     }
                     else
                     {
@@ -491,8 +597,7 @@ namespace VirtualPet_Template
                         WaterIncrease();
                         ExerciseDecrease();
                         ExerciseDecrease();
-                        FoodIncrease();
-                        FoodIncrease();
+                        food = 10;
                     }
                     else
                     {
@@ -508,8 +613,7 @@ namespace VirtualPet_Template
                         WaterIncrease();
                         ExerciseDecrease();
                         ExerciseDecrease();
-                        FoodIncrease();
-                        FoodIncrease();
+                        food = 10;
                     }
 
                     Console.WriteLine();
@@ -521,6 +625,262 @@ namespace VirtualPet_Template
             }
 
         }
+
+        //This method can be called to invoke a hibernation scenario for when the dragon needs sleep or gets too much sleep, exercise, or destruction
+        public void HibernationScenario()
+        {
+            Random RandomGenerator = new Random();
+            int randomNum;
+
+            Console.WriteLine("Your dragon has collected all of the valuables in your house,");
+            Console.WriteLine("hoarded them in a giant pile in your driveway,");
+            Console.WriteLine("curled up on top of them");
+            Console.WriteLine("and gone to sleep.");
+            Console.WriteLine("\r\nNormal dragon hibernation lasts about 50 years...");
+            Console.WriteLine("(Really a situation to avoid at all costs)");
+            Console.WriteLine("What do you want to do?");
+            Console.WriteLine();
+
+            Console.WriteLine("1. Try to wake your dragon up");
+            Console.WriteLine("2. Let your dragon sleep");
+
+            string userOption;
+            int selectedOption;
+
+            userOption = Console.ReadLine();
+
+            //check to make sure that user input was a number
+            if(!int.TryParse(userOption, out selectedOption))
+            {
+                Console.WriteLine("Invalid Entry. By default, you have chosen to let your dragon sleep.");
+                selectedOption = 2;
+            }
+            else
+            {
+                int.TryParse(userOption, out selectedOption);
+            }
+
+            //filter results through possible outcomes
+            switch (selectedOption)
+            {
+                //chose to try to wake it up
+                case 1:
+
+                    randomNum = RandomGenerator.Next(1, 3);
+
+                    if(randomNum ==1)
+                    {
+                        Console.WriteLine("You should know never to try to wake a hibernating dragon!");
+                        Console.WriteLine("Your dragon remains in hibernation.");
+                        Console.WriteLine("Your life, however, burned bright and beautiful \r\nand is now, I am sad to say, over.");
+
+                        Console.WriteLine();
+                        Console.WriteLine("Press any key to continue");
+                        Console.ReadKey();
+                        Environment.Exit(0);
+                    }
+                    else if (randomNum == 2)
+                    {
+                        Console.WriteLine("Don't you know how dangerous it is to try to wake a hibernating dragon?!");
+                        Console.WriteLine("Fortunately for you, it just so happened that his nap was sufficient.");
+                        Console.WriteLine("He is now awake, and you may resume your normal lives...after retrieving your valuables of course!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("I don't know whether to be impressed at your daring or appalled at your stupidity for trying to wake a hibernating dragon.");
+                        Console.WriteLine("Well, in any case, your efforts failed.");
+                        Console.WriteLine("You may as well count your valuables and your driveway as lost.");
+                        Console.WriteLine("No one else is stupid enough to touch a hibernating dragon!");
+                        Console.WriteLine("I just hope you still have enough energy to take care of him in 50 years!");
+                    }
+
+                    sleep = 5;
+
+                    Console.WriteLine();
+                    Console.WriteLine("Press any key to continue");
+                    Console.ReadKey();
+
+                    break;
+
+                //chose to let it sleep
+                case 2:
+
+                    Console.WriteLine("You made a wise choice!");
+                    Console.WriteLine("Bad things happen to those who try to interfere with sleeping dragons");
+                    Console.WriteLine("It may be 50 years without a driveway");
+                    Console.WriteLine("and you may have to replace or do without all of your valuables,");
+                    Console.WriteLine("but at least you can reunite with your dragon in the end!");
+
+                    sleep = 5;
+
+                    Console.WriteLine();
+                    Console.WriteLine("Press any key to continue");
+                    Console.ReadKey();
+                    break;
+
+                default:
+
+                    Console.WriteLine("Invalid Information");
+
+                    break;
+            }
+
+        }
+
+        //This method can be called to check for stats going over or under the health limits and responding accordingly
+        public void StatConsequences()
+        {
+            //food
+            if (food < -3)
+            {
+                Console.ReadKey();
+                Console.Clear();
+                SickPetOverfed();
+            }
+
+            else if (food > 29)
+            {
+                Console.ReadKey();
+                Console.Clear();
+                Console.WriteLine("Your pet despeartely needs food! The consequence:");
+
+                PetRunsAwayScenario();
+
+                food = 10;
+            }
+
+            //water
+            else if (water > 28)
+            {
+                Console.ReadKey();
+                Console.Clear();
+                Console.WriteLine("Your pet despeartely needs water! As a result:");
+
+                PetRunsAwayScenario();
+
+                water = 5;
+            }
+
+            else if (water < -5)
+            {
+                Console.ReadKey();
+                Console.Clear();
+                Console.WriteLine("You have severely over-watered your dragon!");
+                Console.WriteLine("As a result, your dragon has become waterlogged and is unable to fly.");
+                Console.WriteLine("In other words, he'll need plenty of exercise once some of the water weight eases!");
+
+                water = 0;
+                ExerciseIncrease();
+                ExerciseIncrease();
+                DestructionIncrease();
+                SleepDecrease();
+
+                Console.WriteLine();
+                Console.WriteLine("Please press any key to continue");
+                Console.ReadKey();
+                Console.WriteLine();
+            }
+
+            //exercise
+            else if (exercise > 29)
+            {
+                Console.ReadKey();
+                Console.Clear();
+                Console.WriteLine("Your pet has been greatly neglected; it desperately needs exercise. Thus:");
+
+                PetRunsAwayScenario();
+
+                exercise = 10;
+            }
+
+            else if (exercise < -5)
+            {
+                Console.ReadKey();
+                Console.Clear();
+                Console.WriteLine("You have exercised your dragon unto exhaustion. " + name + " will now enter hibernation.");
+
+                HibernationScenario();
+
+                exercise = 8;
+            }
+
+            //sleep
+            else if (sleep > 28)
+            {
+                Console.ReadKey();
+                Console.Clear();
+                Console.WriteLine("Your dragon has been sleep deprived and will now enter hibernation.");
+
+                HibernationScenario();
+            }
+
+            else if (sleep <-5)
+            {
+                Console.ReadKey();
+                Console.Clear();
+                Console.WriteLine("Your dragon has received so much sleep that it triggered hibernation.");
+
+                HibernationScenario();
+            }
+
+            //destruction
+            else if (destruction > 28)
+            {
+                Console.ReadKey();
+                Console.Clear();
+                Console.WriteLine("Your dragon has been forced to suppress its destructive urges.");
+                Console.WriteLine("I do not envy you the consequences: ");
+
+                    Console.WriteLine("\r\nThis is a letter from your local fire department informing you of the consequences from your dragon's recent raid.");
+                    Console.WriteLine("\r\nWe were so busy putting out the fire at our own firehouse");
+                    Console.WriteLine("that the town hall burnt down as well as the grocery store");
+                    Console.WriteLine("and our favorite ice cream store.");
+                    Console.WriteLine("\r\nThis is your final warning.");
+                    Console.WriteLine("If you don't control your dragon,");
+                    Console.WriteLine("your dragon license will be suspended,");
+                    Console.WriteLine("and Dragon Control will come to take your dragon into custody.");
+                    Console.WriteLine("\r\nRegards,");
+                    Console.WriteLine("Your local fire department");
+
+                destruction = 10;
+
+                    Console.WriteLine();
+                    Console.WriteLine("Please press any key to continue");
+                    Console.ReadKey();
+                    Console.WriteLine();
+
+                //I had tried to set up a counter to give subsequent responses if went over more than once, but since it was calling it anew each time, it wasn't working.
+                //Is there a good way to fix this problem?
+                //I thought of having it return the counter value, but that came with its own set of issues. Is that how I'd have to approach it or is there another way?
+                //else if (ctr ==1)
+                //{
+                //    Console.WriteLine("\r\nThis is a letter from your local fire department regarding the consequences from your dragon's subsequent raid.");
+                //    Console.WriteLine("\r\nWe find a recounting of all the damages to be redundant at this point.");
+                //    Console.WriteLine("\r\nWe already informed you of the consequences.");
+                //    Console.WriteLine("Your dragon license has been revoked.");
+                //    Console.WriteLine("Dragon Control will take your dragon into custody not later than noon tomorrow.");
+                //    Console.WriteLine("\r\nRegards,");
+                //    Console.WriteLine("Your local fire department");
+
+                //    Console.WriteLine();
+                //    Console.WriteLine("Please press any key to continue");
+                //    Console.ReadKey();
+                //    Environment.Exit(0);
+                //}
+            }
+            
+            else if (destruction < -5)
+            {
+                Console.ReadKey();
+                Console.Clear();
+                Console.WriteLine("Your dragon's energy has been so deeply depleted that it will now enter hibernation to recover.");
+
+                HibernationScenario();
+
+                destruction = 5;
+            }
+    }
+
 
             public void Tick(int selectedOption)
         {
@@ -754,7 +1114,7 @@ namespace VirtualPet_Template
                     case 4:
 
                         Console.WriteLine("You, love, have the best dragon that ever was.");
-                        Console.WriteLine("Not many dragons would be so considerate as to find such a remote place to vent fire and chaose upon the land.");
+                        Console.WriteLine("Not many dragons would be so considerate as to find such a remote place to vent fire and chaos upon the land.");
 
                         ExerciseDecrease();
                         DestructionDecreaseWilderness();
