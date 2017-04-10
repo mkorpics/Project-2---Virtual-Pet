@@ -166,14 +166,14 @@ namespace VirtualPet_Template
             Console.WriteLine("Destruction: \t" + destruction);
         }
 
-        //This method can be called print centered text strings
+        //This method can be called to print centered text strings
         public void PrintCenter (string text)
         {
             Console.SetCursorPosition((Console.WindowWidth - text.Length) / 2, Console.CursorTop);
             Console.WriteLine(text);
         }
 
-        //This method can be called to run the scenari where the neighbor asks user to watch her dragon
+        //This method can be called to run the scenario where the neighbor asks the user to watch her dragon
         public void WatchNeighborDragon()
         {
             //set up scenario
@@ -192,11 +192,14 @@ namespace VirtualPet_Template
             Console.WriteLine();
             Console.WriteLine();
 
+            //check to see if user input a number and convert string to int.
+            //if not, automatically select "yes"
             if(!int.TryParse(userOption, out selectedOption))
             {
                 Console.WriteLine("Invalid input. You have automatically selected \"yes\".");
                 selectedOption = 1;
             }
+
             else
             {
                 int.TryParse(userOption, out selectedOption);
@@ -206,7 +209,8 @@ namespace VirtualPet_Template
             Random RandomGenerator = new Random();
             int randomNum;
 
-            switch(selectedOption)
+            //filter user choice to correct outcome
+            switch (selectedOption)
             {
                 //user selected yes
                 case 1:
@@ -274,18 +278,34 @@ namespace VirtualPet_Template
         //This method can be called to run the "Pet runs away" scenario
         public void PetRunsAwayScenario()
         {
+            //Introduce scenario and give options
             Console.WriteLine("This morning you walked outside, eager to greet your beloved dragon. \r\nExcept when you got there, there was no dragon. \r\nYou called and searched around your property; he would have come if he heard you! \r\nWhat would you like to do?");
             Console.WriteLine("1. Call Dragon Patrol");
             Console.WriteLine("2. Search on your own");
             Console.WriteLine("3. Adopt a new dragon");
 
-            int selectedOption = int.Parse(Console.ReadLine());
+            string userOption = Console.ReadLine();
+            int selectedOption;
 
+            //check that user input a number
+            if (!int.TryParse(userOption, out selectedOption))
+            {
+                Console.WriteLine("Invalid entry. You have selected to call Dragon Patrol by default.");
+                selectedOption = 1;
+            }
+            else
+            {
+                int.TryParse(userOption, out selectedOption);
+            }
+
+            //create random number generator
             Random RandomGenerator = new Random();
             int randomNum;
 
+            //filter user choice to correct outcome
             switch (selectedOption)
             {
+                //called dragon patrol
                 case 1:
                     randomNum = RandomGenerator.Next(1, 5);
                     if (randomNum == 1)
@@ -352,7 +372,9 @@ namespace VirtualPet_Template
                     Console.WriteLine();
                     break;
                    
+                //went and searched for dragon
                 case 2:
+
                     randomNum = RandomGenerator.Next(1, 3);
 
                     if (randomNum == 1)
@@ -396,7 +418,8 @@ namespace VirtualPet_Template
                     Console.ReadKey();
                     Console.WriteLine();
                     break;
-
+                
+                //chose to adopt new dragon
                 case 3:
                     
                     Console.WriteLine("Really? You want to give up just like that?");
@@ -409,6 +432,10 @@ namespace VirtualPet_Template
                     Console.ReadKey();
                     Environment.Exit(0);
                     break;
+
+                default:
+                    Console.WriteLine("Invalid entry.");
+                    break;
             }
 
         }
@@ -416,6 +443,7 @@ namespace VirtualPet_Template
         //This method can be called to run the Sick pet scenario
         public void SickPetScenarioGeneral()
         {
+            //Introduce scenario
             Console.WriteLine("It was a long, exhausting day. You have re-discovered how frustrating people can be.");
             Console.WriteLine("Unfortunately, your day is not over yet.");
             Console.WriteLine("When you went to check on your dragon this evening, something was most definitely not right.");
@@ -427,11 +455,26 @@ namespace VirtualPet_Template
             Console.WriteLine("2. Wait it out");
             Console.WriteLine();
 
-            int selectedOption = int.Parse(Console.ReadLine());
+            //check that user input a number
+            string userOption = Console.ReadLine();
+            int selectedOption;
 
+            //check that user input a number
+            if (!int.TryParse(userOption, out selectedOption))
+            {
+                Console.WriteLine("Invalid entry. By default you have chosen to take your dragon to the vet.");
+                selectedOption = 1;
+            }
+            else
+            {
+                int.TryParse(userOption, out selectedOption);
+            }
+
+            //create random number generator
             Random RandomGenerator = new Random();
             int randomNum;
 
+            //filter user choice to correct outcome
             switch (selectedOption)
             {
                 //took to vet
@@ -518,14 +561,16 @@ namespace VirtualPet_Template
                     Console.WriteLine();
 
                     break;
+
+                default:
+                    Console.WriteLine("Invalid entry.");
+                    break;
             }
-
-
-
         }
 
         public void SickPetOverfed()
         {
+            //Introduce to scenario
             Console.WriteLine("You have seriously overfed your dragon!");
             Console.WriteLine("It doesn't look like "+name+ " is doing well.");
             Console.WriteLine("What would you like to do?");
@@ -533,11 +578,25 @@ namespace VirtualPet_Template
             Console.WriteLine("2. Wait it out");
             Console.WriteLine();
 
-            int selectedOption = int.Parse(Console.ReadLine());
+            string userOption = Console.ReadLine();
+            int selectedOption;
 
+            //check to see if user input number
+            if (!int.TryParse(userOption, out selectedOption))
+            {
+                Console.WriteLine("Invalid entry. By default you will wait it out.");
+                selectedOption = 2;
+            }
+            else
+            {
+                int.TryParse(userOption, out selectedOption);
+            }
+
+            //create random number generator
             Random RandomGenerator = new Random();
             int randomNum;
 
+            //filter user choice to correct output
             switch (selectedOption)
             {
                 //took to vet
@@ -622,16 +681,17 @@ namespace VirtualPet_Template
                     Console.WriteLine();
 
                     break;
-            }
 
+                default:
+                    Console.WriteLine("Invalid entry.");
+                    break;
+            }
         }
 
         //This method can be called to invoke a hibernation scenario for when the dragon needs sleep or gets too much sleep, exercise, or destruction
         public void HibernationScenario()
         {
-            Random RandomGenerator = new Random();
-            int randomNum;
-
+            //Introduce scenario
             Console.WriteLine("Your dragon has collected all of the valuables in your house,");
             Console.WriteLine("hoarded them in a giant pile in your driveway,");
             Console.WriteLine("curled up on top of them");
@@ -644,10 +704,8 @@ namespace VirtualPet_Template
             Console.WriteLine("1. Try to wake your dragon up");
             Console.WriteLine("2. Let your dragon sleep");
 
-            string userOption;
+            string userOption = Console.ReadLine();
             int selectedOption;
-
-            userOption = Console.ReadLine();
 
             //check to make sure that user input was a number
             if(!int.TryParse(userOption, out selectedOption))
@@ -660,7 +718,11 @@ namespace VirtualPet_Template
                 int.TryParse(userOption, out selectedOption);
             }
 
-            //filter results through possible outcomes
+            //create random number generator
+            Random RandomGenerator = new Random();
+            int randomNum;
+
+            //filter user choice to proper outcome
             switch (selectedOption)
             {
                 //chose to try to wake it up
@@ -724,7 +786,6 @@ namespace VirtualPet_Template
 
                     break;
             }
-
         }
 
         //This method can be called to check for stats going over or under the health limits and responding accordingly
@@ -884,6 +945,7 @@ namespace VirtualPet_Template
 
             public void Tick(int selectedOption)
         {
+            //create random number generator
             Random RandomGenerator = new Random();
             int randomNum = RandomGenerator.Next(1, 4);
 
@@ -893,12 +955,14 @@ namespace VirtualPet_Template
                 Console.WriteLine("One of the travails of being a pet owner:");
                 Console.WriteLine("Uncooperative pets!");
 
+                //options for pet to refuse user's choice
                 switch (selectedOption)
                 {
                     //feed cattle
                     case 1:
 
                         Console.WriteLine(name+ " has decided not to eat.");
+
                         FoodIncrease();
 
                         break;
@@ -966,6 +1030,10 @@ namespace VirtualPet_Template
                         Console.WriteLine("Well, it was a pleasure; we hope you come back soon!");
                         Environment.Exit(0);
                         break;
+
+                    default:
+                        Console.WriteLine("Invalid entry.");
+                        break;
                 }
             }
 
@@ -973,8 +1041,10 @@ namespace VirtualPet_Template
                 {
                 Console.WriteLine();
 
+                //create random number generator
                 int randomAct = RandomGenerator.Next(1,6);
 
+                    //filter through possible actions for the dragon (chosen by the random number)
                     switch (randomAct)
                     {
                     //Food - eats
@@ -1032,7 +1102,7 @@ namespace VirtualPet_Template
 
                     //Destruction - rampages
                     case 5:
-                    case 6:
+                    case 6: // chosen so rarely, I gave it two chances to land on this outcome
 
                         Console.WriteLine("One of the downsides of dragons: destructive urges.");
                         Console.WriteLine("There was some fire. A bit of trampling.");
@@ -1047,13 +1117,17 @@ namespace VirtualPet_Template
                         WaterIncrease();
 
                         break;
+
+                    default:
+                        Console.WriteLine("Invalid input.");
+                        break;
                     }
 
             }
 
            else //pet will evaluate stats and do the most necessary thing
             {
-                Console.WriteLine("Your pet has decided to take care of its own needs.");
+                Console.WriteLine("Your dragon has decided to take care of its own needs.");
                 int[] petStats = { food, water, exercise, sleep, destruction };
                 int[] dummyStats = { food, water, exercise, sleep, destruction };
                 Array.Sort(dummyStats);
@@ -1122,6 +1196,10 @@ namespace VirtualPet_Template
                         WaterIncrease();
                         SleepIncrease();
 
+                        break;
+
+                    default:
+                        Console.WriteLine("Invalid entry");
                         break;
                 }
             }

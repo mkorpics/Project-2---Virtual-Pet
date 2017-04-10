@@ -144,6 +144,11 @@ namespace VirtualPet_Template
                     Console.ReadKey();
                     Console.Clear();
                     myPet.WatchNeighborDragon();
+
+                    Console.WriteLine();
+                    Console.WriteLine("\r\nPress any key to continue");
+                    Console.ReadKey();
+                    Console.WriteLine();
                 }
 
                 else if (ctr == 16 || ctr == 44)
